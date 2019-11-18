@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Groene tenen')"></head>
+<body>
+<nav th:replace="fragments::menu"></nav>
+<h1>Groene tenen, <span th:text="${begroeting}"></span>.</h1>
+<blockquote>De aanleg van een gezellig gazon.</blockquote>
+<img alt="gazon" th:src="@{/images/gazon.jpg}" class="fullwidth">
+</body>
+</html>

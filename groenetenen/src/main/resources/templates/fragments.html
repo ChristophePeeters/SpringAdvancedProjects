@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <link rel="icon" th:href="@{/images/groenetenen.ico}" type="image/x-icon">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/groenetenen.css}">
+</head>
+<body>
+<nav th:fragment="menu">
+    <ul>
+        <li><a th:href="@{/}">&#8962;</a></li>
+        <li><a href="#">Filialen</a>
+            <ul>
+                <li><a th:href="@{/filialen/vantotpostcodeform}">Van tot postcode</a></li>
+                <li><a th:href="@{/filialen/perid}">Per id</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Werknemers</a>
+            <ul>
+                <li><a th:href="@{/werknemers}">Lijst</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Offertes</a>
+            <ul>
+                <li><a th:href="@{/offertes/toevoegen}">Toevoegen</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+</body>
+</html>
