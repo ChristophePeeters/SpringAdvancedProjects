@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title=${filiaal==null} ?
+'Filiaal niet gevonden' : ${filiaal.naam})"></head>
+<body>
+<nav th:replace="fragments::menu"></nav>
+<div th:if="${filiaal}==null" class="fout">Filiaal niet gevonden.</div>
+<h1 th:if="${filiaal}!=null" th:text="${filiaal.naam}"></h1>
+<dl th:if="${filiaal}!=null" th:object="${filiaal}">
+    <dt>Straat</dt><dd th:text="*{adres.straat}"></dd>
+    <dt>Huisnr.</dt><dd th:text="*{adres.huisNr}"></dd>
+    <dt>Postcode</dt><dd th:text="*{adres.postcode}"></dd>
+    <dt>Gemeente</dt><dd th:text="*{adres.gemeente}"></dd>
+    <dt>Type</dt><dd th:text="*{hoofdFiliaal} ? 'Hoofdfiliaal' : 'Bijfiliaal'"></dd>
+    <dt>Waarde gebouw</dt><dd th:text="*{{waardeGebouw}}"></dd>
+    <dt>In gebruikname</dt><dd th:text="*{{inGebruikName}}"></dd>
+</dl>
+</body>
+</html>

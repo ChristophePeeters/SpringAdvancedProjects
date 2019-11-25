@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Van tot postcode')"></head>
+<body>
+<nav th:replace="fragments::menu"></nav>
+<h1>Van tot postcode</h1>
+<form method="get" th:action="@{/filialen/vantotpostcode}"
+      th:object="${vanTotPostcodeForm}">
+    <label>Van:
+        <span th:errors="*{van}"></span>
+        <input th:field="*{van}" type="number" required min="1000" max="9999"
+               autofocus>
+    </label>
+    <label>Tot:
+        <span th:errors="*{tot}"></span>
+        <input th:field="*{tot}" type="number" required min="1000" max="9999">
+    </label>
+    <button>Zoeken</button>
+</form>
+<div th:each="filiaal:${filialen}" th:object="${filiaal}">
+    <h2 th:text="*{naam}"></h2>
+    <div th:text="|*{adres.straat} *{adres.huisNr}|"></div>
+    <div><a th:href="@{/filialen/{id}(id=*{id})}">Detail</a></div>
+    <div th:text="|*{adres.postcode} *{adres.gemeente}|"></div>
+</div>
+</body>
+</html>
