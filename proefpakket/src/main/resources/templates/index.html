@@ -6,5 +6,16 @@
 <h1>Proefpakket.</h1>
 <blockquote>Een pakket bieren van een brouwer naar uw keuze.</blockquote>
 <img alt="gazon" th:src="@{/images/brouwerij.jpg}" class="fullwidth">
+<div>Kies een brouwer:</div>
+<ul id="alfabet">
+    <li th:each="letter:${alfabet}">
+        <a th:href="@{/alfabet/{letter}(letter=${letter})}" th:text="${letter}"></a>
+    </li>
+</ul>
+<ul th:if="${brouwers} != null">
+    <li th:each="brouwer:${brouwers}" th:object="${brouwer}">
+        <a th:href="@{/brouwers/{id}(id=*{id})}" th:text="*{naam}"></a>
+    </li>
+</ul>
 </body>
 </html>
