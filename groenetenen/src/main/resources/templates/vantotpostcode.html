@@ -16,6 +16,10 @@
         <input th:field="*{tot}" type="number" required min="1000" max="9999">
     </label>
     <button>Zoeken</button>
+    <div th:if="${#fields.hasGlobalErrors()}">
+        <div class="fout" th:each="err : ${#fields.globalErrors()}"
+             th:text="${err}"></div>
+    </div>
 </form>
 <div th:each="filiaal:${filialen}" th:object="${filiaal}">
     <h2 th:text="*{naam}"></h2>
