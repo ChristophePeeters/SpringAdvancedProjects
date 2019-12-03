@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Offerte toevoegen: stap 2')"></head>
+<body>
+<nav th:replace="fragments::menu"></nav>
+<h1>Offerte toevoegen: stap 2</h1>
+<form th:action="@{/offertes/toevoegen}" th:object="${offerte}" method="post">
+    <label>Oppervlakte: <span th:errors="*{oppervlakte}"></span>
+        <input th:field="*{oppervlakte}" type="number" required min="1" autofocus>
+    </label>
+    <button name="stap1" formnovalidate>Stap 1</button>
+    <button name="opslaan">Opslaan</button>
+</form>
+</body>
+</html>

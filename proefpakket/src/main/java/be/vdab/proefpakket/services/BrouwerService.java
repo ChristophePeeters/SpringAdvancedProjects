@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface BrouwerService {
     List<Brouwer> findByBeginNaam(String beginNaam);
+    void update(Brouwer brouwer);
 }

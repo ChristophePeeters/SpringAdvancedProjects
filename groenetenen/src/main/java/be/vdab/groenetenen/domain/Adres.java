@@ -21,7 +21,6 @@ public class Adres implements Serializable {
     private int postcode;
     @NotBlank
     private String gemeente;
-// Je maakt getters voor alle variabelen (behalve serialVersionUID)
 
 
     public String getStraat() {

@@ -23,7 +23,22 @@ dd {
     margin-left:0;
     font-weight: bold;
 }
-.fout {
+label {
+    cursor: pointer;
+}
+input, select {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+    margin-top: 0.2em;
+}
+input:focus, textarea:focus, select:focus {
+    background-color: #FFFFD6
+}
+input[type='checkbox'], input[type='radio'] {
+    display: inline;
+}
+label span, .fout {
     background-color: red;
     border-bottom-right-radius: 0.5em;
     border-top-left-radius: 0.5em;
@@ -34,6 +49,6 @@ dd {
     color: white;
     font-weight: bold;
 }
-.fout:empty {
+label span:empty, .fout:empty {
     display: none;
 }
