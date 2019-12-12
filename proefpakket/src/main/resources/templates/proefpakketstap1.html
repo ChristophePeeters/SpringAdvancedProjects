@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Proefpakket (stap 1)')"></head>
+<body>
+<div th:if="${brouwer}==null" class="fout">Brouwer niet gevonden.</div>
+<h1 th:if="${brouwer}!=null"
+    th:text="|Proefpakket ${brouwer.naam} (stap 1) |"></h1>
+<form th:if="${brouwer}!=null" th:object="${bestelling}" method="post"
+      th:action="@{/brouwers/{id}/proefpakket(id=${brouwer.id})}">
+    <label>Voornaam: <span th:errors="*{voornaam}"></span>
+        <input th:field="*{voornaam}" required autofocus></label>
+    <label>Familienaam: <span th:errors="*{familienaam}"></span>
+        <input th:field="*{familienaam}" required></label>
+    <label>Email adres: <span th:errors="*{emailAdres}"></span>
+        <input type="email" th:field="*{emailAdres}" required></label>
+    <button name="stap2">Stap 2</button>
+</form>
+</body>
+</html>
