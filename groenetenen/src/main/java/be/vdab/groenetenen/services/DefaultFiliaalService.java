@@ -32,4 +32,16 @@ class DefaultFiliaalService implements FiliaalService {
         }
         filiaalRepository.delete(filiaal);
     }
+
+    @Override
+    @Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
+    public void create(Filiaal filiaal) {
+        filiaalRepository.save(filiaal);
+    }
+
+    @Override
+    @Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
+    public void update(Filiaal filiaal) {
+        filiaalRepository.save(filiaal);
+    }
 }

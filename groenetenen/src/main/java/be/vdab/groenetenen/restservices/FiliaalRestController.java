@@ -5,8 +5,10 @@ import be.vdab.groenetenen.exceptions.FiliaalHeeftNogWerknemersException;
 import be.vdab.groenetenen.exceptions.FiliaalNietGevondenException;
 import be.vdab.groenetenen.services.FiliaalService;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -43,5 +45,26 @@ class FiliaalRestController {
     @ResponseStatus(HttpStatus.CONFLICT)
     String filiaalHeeftNogWerknemers() {
         return "filiaal heeft nog werknemers";
+    }
+
+    @PostMapping
+    public void create(@RequestBody @Valid Filiaal filiaal) {
+        filiaalService.create(filiaal);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    String filiaalMetVerkeerdeProperties(MethodArgumentNotValidException ex) {
+        StringBuilder fouten = new StringBuilder();
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                fouten.append(error.getField()).append(':')
+                        .append(error.getDefaultMessage()).append('\n'));
+        fouten.deleteCharAt(fouten.length() - 1);
+        return fouten.toString();
+    }
+
+    @PutMapping("{id}")
+    public void update(@RequestBody @Valid Filiaal filiaal) {
+        filiaalService.update(filiaal);
     }
 }
