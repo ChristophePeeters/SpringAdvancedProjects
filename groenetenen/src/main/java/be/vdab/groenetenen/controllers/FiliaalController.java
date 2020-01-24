@@ -3,6 +3,7 @@ package be.vdab.groenetenen.controllers;
 import be.vdab.groenetenen.domain.Filiaal;
 import be.vdab.groenetenen.forms.VanTotPostcodeForm;
 import be.vdab.groenetenen.services.FiliaalService;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 // enkele imports
 @Controller
-@RequestMapping("filialen")
+@RequestMapping(path = "filialen", produces = MediaType.TEXT_HTML_VALUE)
 class FiliaalController {
     private final FiliaalService filiaalService;
     FiliaalController(FiliaalService filiaalService) {

@@ -1,5 +1,6 @@
 package be.vdab.groenetenen.domain;
 
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -15,6 +17,7 @@ import java.util.Objects;
 @Table(name = "werknemers")
 @NamedEntityGraph(name = Werknemer.MET_FILIAAL,
         attributeNodes = @NamedAttributeNode("filiaal") )
+
 public class Werknemer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

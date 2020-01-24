@@ -1,5 +1,8 @@
 package be.vdab.groenetenen.domain;
 
+import be.vdab.groenetenen.adapters.LocalDateAdapter;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -9,15 +12,22 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Set;
 
-// enkele imports ...
 @Entity
 @Table(name = "filialen")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@JsonAutoDetect(fieldVisibility= JsonAutoDetect.Visibility.ANY)
 public class Filiaal implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -33,14 +43,13 @@ public class Filiaal implements Serializable {
     private BigDecimal waardeGebouw;
     @DateTimeFormat(style = "S-")
     @NotNull
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private LocalDate inGebruikName;
     @Valid
     @Embedded
     private Adres adres;
     @Version
     private long versie;
-    // Je maakt getters voor id, naam, hoofdFiliaal, waardeGebouw, inGebruiName, adres
-
 
     public long getId() {
         return id;
@@ -67,7 +76,10 @@ public class Filiaal implements Serializable {
     }
 
     @OneToMany(mappedBy = "filiaal")
+    @XmlTransient
+    @JsonIgnore
     private Set<Werknemer> werknemers;
+
     public Set<Werknemer> getWerknemers() {
         return Collections.unmodifiableSet(werknemers);
     }
