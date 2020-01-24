@@ -51,9 +51,9 @@ public class Werknemer implements Serializable {
         return familienaam;
     }
 
-    public Filiaal getFiliaal() {
-        return filiaal;
-    }
+//    public Filiaal getFiliaal() {
+//        return filiaal;
+//    }
 
     public BigDecimal getWedde() {
         return wedde;
