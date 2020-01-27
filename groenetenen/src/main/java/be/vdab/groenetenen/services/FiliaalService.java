@@ -9,4 +9,5 @@ public interface FiliaalService {
     void delete(Filiaal filiaal);
     void create(Filiaal filiaal);
     void update(Filiaal filiaal);
+    List<Filiaal> findAll();
 }
