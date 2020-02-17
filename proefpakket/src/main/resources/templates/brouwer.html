@@ -27,6 +27,10 @@
         <a th:href="@{/brouwers/{id}/proefpakket(id=${brouwer.id})}">Proefpakket
             aanvragen</a>
     </div>
+    <div>
+        <a th:href="@{/weer/{plaats}/temperatuur(plaats=${brouwer.adres.gemeente.naam})}">
+            Temperatuur</a>
+    </div>
 </div>
 <body>
 </html>
