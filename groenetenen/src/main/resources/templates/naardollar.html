@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Naar dollar')"></head>
+<body>
+<nav th:replace="fragments::menu"></nav>
+<div th:if="${dollar} == null" class="fout">Kan koers $ niet ophalen.</div>
+<h1 th:if="${dollar} != null"> &euro;
+    <span th:text=" ${#numbers.formatDecimal(euro,1,2)}"></span> is $
+    <span th:text=" ${#numbers.formatDecimal(dollar,1,2)}"></span>.
+</h1>
+</body>
+</html>

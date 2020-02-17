@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 class IndexController {
     private String begroeting() {
         int uur = LocalDateTime.now().getHour();
-        System.out.println("goedeMorgen");
         if (uur >= 6 && uur < 12) {
             return "goedeMorgen";
         }
