@@ -10,14 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
+
 @Controller
 @RequestMapping("offertes")
 @SessionAttributes("offerte")
 class OfferteController {
     private final OfferteService offerteService;
+    private HttpServletRequest request;
 
-    OfferteController(OfferteService offerteService) {
+    public OfferteController(OfferteService offerteService, HttpServletRequest request) {
         this.offerteService = offerteService;
+        this.request = request;
     }
 
     @GetMapping("toevoegen")
@@ -47,8 +52,17 @@ class OfferteController {
         if (errors.hasErrors()) {
             return "offerteStap2";
         }
-        offerteService.create(offerte);
+        String offertesURL =  request.getRequestURL().toString().replace("toevoegen", "");
+        offerteService.create(offerte, offertesURL);
         session.setComplete();
         return "redirect:/";
+    }
+
+    @GetMapping("{optionalOfferte}")
+    public ModelAndView read(@PathVariable Optional<Offerte> optionalOfferte) {
+        ModelAndView modelAndView = new ModelAndView("offerte");
+        optionalOfferte.ifPresent(
+                offerte -> modelAndView.addObject("offer", offerte));
+        return modelAndView;
     }
 }

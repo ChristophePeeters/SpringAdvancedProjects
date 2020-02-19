@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang='nl' xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Offerte')"></head>
+<body>
+<nav th:replace='fragments::menu'></nav>
+<div th:if="${offer}==null" class="fout">Offerte niet gevonden.</div>
+<h1 th:if="${offer}!=null">Offerte <span th:text="${offer.id}"></span></h1>
+<dl th:if="${offer}!=null" th:object="${offer}">
+    <dt>Voornaam</dt>
+    <dd th:text="*{voornaam}"></dd>
+    <dt>Familienaam</dt>
+    <dd th:text="*{familienaam}"></dd>
+    <dt>Email adres</dt>
+    <dd th:text="*{emailAdres}"></dd>
+    <dt>Oppervlakte</dt>
+    <dd th:text="*{{oppervlakte}}"></dd>
+    <dt>Aangemaakt</dt>
+    <dd th:text="*{{aangemaakt}}"></dd>
+</dl>
+</body>
+</html>
