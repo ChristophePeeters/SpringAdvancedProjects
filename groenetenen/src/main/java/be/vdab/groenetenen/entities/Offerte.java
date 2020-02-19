@@ -1,5 +1,6 @@
 package be.vdab.groenetenen.entities;
 
+import be.vdab.groenetenen.adapters.LocalDateAdapter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -8,11 +9,15 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name="offertes")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Offerte implements Serializable {
     public interface Stap1 {}
     public interface Stap2 {}
@@ -32,6 +37,7 @@ public class Offerte implements Serializable {
     @NumberFormat
     private Integer oppervlakte;
     @DateTimeFormat(style = "S-")
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private LocalDate aangemaakt = LocalDate.now();
 
     public long getId() {
