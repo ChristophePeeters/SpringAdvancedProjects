@@ -13,8 +13,9 @@ class MessagingConfig {
         marshaller.setClassesToBeBound(OfferteEnOffertesURL.class);
         return marshaller;
     }
+
     @Bean
-    MarshallingMessageConverter converter (Jaxb2Marshaller marshaller) {
+    MarshallingMessageConverter converter(Jaxb2Marshaller marshaller) {
         return new MarshallingMessageConverter(marshaller);
     }
 }

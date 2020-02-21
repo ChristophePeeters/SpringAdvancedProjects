@@ -16,11 +16,15 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="offertes")
+@Table(name = "offertes")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Offerte implements Serializable {
-    public interface Stap1 {}
-    public interface Stap2 {}
+    public interface Stap1 {
+    }
+
+    public interface Stap2 {
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,5 +67,4 @@ public class Offerte implements Serializable {
     public LocalDate getAangemaakt() {
         return aangemaakt;
     }
-// Je maakt getters voor de private variabelen, behalve serialVersionUID.
 }
