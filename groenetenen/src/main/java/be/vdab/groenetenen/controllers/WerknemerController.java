@@ -11,11 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("werknemers")
 class WerknemerController {
     private final WerknemerService werknemerService;
+
     WerknemerController(WerknemerService werknemerService) {
         this.werknemerService = werknemerService;
     }
+
     @GetMapping
     public ModelAndView lijst(Pageable pageable) {
         return new ModelAndView("werknemers",
                 "page", werknemerService.findAll(pageable));
-    }}
+    }
+}

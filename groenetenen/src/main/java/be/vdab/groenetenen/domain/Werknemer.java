@@ -1,6 +1,5 @@
 package be.vdab.groenetenen.domain;
 
-import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
@@ -8,7 +7,6 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
-import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -16,7 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "werknemers")
 @NamedEntityGraph(name = Werknemer.MET_FILIAAL,
-        attributeNodes = @NamedAttributeNode("filiaal") )
+        attributeNodes = @NamedAttributeNode("filiaal"))
 
 public class Werknemer implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -33,11 +31,11 @@ public class Werknemer implements Serializable {
     private Filiaal filiaal;
     @NotNull
     @PositiveOrZero
-    @NumberFormat(style= NumberFormat.Style.NUMBER)
+    @NumberFormat(style = NumberFormat.Style.NUMBER)
     @Digits(integer = 10, fraction = 2)
     private BigDecimal wedde;
     private long rijksregisterNr;
-    public static final String MET_FILIAAL="Werknemer.metFiliaal";
+    public static final String MET_FILIAAL = "Werknemer.metFiliaal";
 
     public long getId() {
         return id;

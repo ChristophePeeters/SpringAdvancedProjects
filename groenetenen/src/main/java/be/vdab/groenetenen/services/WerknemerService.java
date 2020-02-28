@@ -6,4 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 
 public interface WerknemerService {
-    Page<Werknemer> findAll(Pageable pageable);}
+    Page<Werknemer> findAll(Pageable pageable);
+}

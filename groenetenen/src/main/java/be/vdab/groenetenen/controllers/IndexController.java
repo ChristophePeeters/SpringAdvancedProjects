@@ -20,6 +20,7 @@ class IndexController {
         }
         return "goedeAvond";
     }
+
     @GetMapping
     public ModelAndView index() {
         return new ModelAndView("index", "begroeting", begroeting());

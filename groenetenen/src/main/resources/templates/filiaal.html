@@ -24,5 +24,8 @@
     <dt>In gebruikname</dt>
     <dd th:text="*{{inGebruikName}}"></dd>
 </dl>
+<form th:action="@{/filialen/{id}/afschrijven(id=${filiaal.id})}" method="post">
+    <button>Afschrijven</button>
+</form>
 </body>
 </html>

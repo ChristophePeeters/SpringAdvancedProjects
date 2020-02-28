@@ -52,7 +52,7 @@ class OfferteController {
         if (errors.hasErrors()) {
             return "offerteStap2";
         }
-        String offertesURL =  request.getRequestURL().toString().replace("toevoegen", "");
+        String offertesURL = request.getRequestURL().toString().replace("toevoegen", "");
         offerteService.create(offerte, offertesURL);
         session.setComplete();
         return "redirect:/";

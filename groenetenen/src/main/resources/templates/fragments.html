@@ -27,6 +27,12 @@
         </li>
         <li><a th:href="@{?locale=nl_BE}">NL</a></li>
         <li><a th:href="@{?locale=fr_BE}">FR</a></li>
+        <li><a th:href="@{/login}">Aanmelden</a></li>
+        <li>
+            <form method="post" th:action="@{/logout}">
+                <button>Afmelden</button>
+            </form>
+        </li>
     </ul>
 </nav>
 </body>

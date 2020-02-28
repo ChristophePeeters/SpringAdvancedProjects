@@ -8,7 +8,6 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 
-
 @Configuration
 class WebConfig implements WebMvcConfigurer {
     @Bean

@@ -27,7 +27,7 @@ import java.util.Set;
 @Table(name = "filialen")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@JsonAutoDetect(fieldVisibility= JsonAutoDetect.Visibility.ANY)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Filiaal implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -82,5 +82,9 @@ public class Filiaal implements Serializable {
 
     public Set<Werknemer> getWerknemers() {
         return Collections.unmodifiableSet(werknemers);
+    }
+
+    public void afschrijven() {
+        waardeGebouw = BigDecimal.ZERO;
     }
 }

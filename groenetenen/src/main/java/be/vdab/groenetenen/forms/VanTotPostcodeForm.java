@@ -1,7 +1,6 @@
 package be.vdab.groenetenen.forms;
 
 import be.vdab.groenetenen.constraints.Postcode;
-import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotNull;
 
