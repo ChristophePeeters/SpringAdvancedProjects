@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.Optional;
 
-// enkele imports
 @Controller
 @RequestMapping(path = "filialen", produces = MediaType.TEXT_HTML_VALUE)
 class FiliaalController {

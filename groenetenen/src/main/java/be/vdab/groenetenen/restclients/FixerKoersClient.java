@@ -17,10 +17,12 @@ class FixerKoersClient implements KoersClient {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final URI uri;
     private final RestTemplate template;
+
     FixerKoersClient(@Value("${fixerURL}") URI uri, RestTemplateBuilder builder) {
         this.uri = uri;
         this.template = builder.build();
     }
+
     @Override
     public BigDecimal getDollarKoers() {
         try {
