@@ -5,22 +5,33 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+
+import javax.sql.DataSource;
 
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String MANAGER = "manager";
     private static final String HELPDESKMEDEWERKER = "helpdeskmedewerker";
     private static final String MAGAZIJNIER = "magazijnier";
+    private static final String USERS_BY_USERNAME =
+            "select naam as username, paswoord as password, actief as enabled" +
+                    " from gebruikers where naam = ?";
+    private static final String AUTHORITIES_BY_USERNAME =
+            "select gebruikers.naam as username, rollen.naam as authorities" +
+                    " from gebruikers inner join gebruikersrollen" +
+                    " on gebruikers.id = gebruikersrollen.gebruikerid" +
+                    " inner join rollen" +
+                    " on rollen.id = gebruikersrollen.rolid" +
+                    " where gebruikers.naam= ?";
 
     @Bean
-    InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-        return new InMemoryUserDetailsManager(
-                User.builder().username("joe").password("{noop}theboss")
-                        .authorities(MANAGER).build(),
-                User.builder().username("averell").password("{noop}hungry")
-                        .authorities(HELPDESKMEDEWERKER, MAGAZIJNIER).build());
+    JdbcDaoImpl jdbcDaoImpl(DataSource dataSource) {
+        JdbcDaoImpl impl = new JdbcDaoImpl();
+        impl.setDataSource(dataSource);
+        impl.setUsersByUsernameQuery(USERS_BY_USERNAME);
+        impl.setAuthoritiesByUsernameQuery(AUTHORITIES_BY_USERNAME);
+        return impl;
     }
 
     @Override
