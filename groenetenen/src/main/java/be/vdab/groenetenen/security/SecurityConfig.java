@@ -1,6 +1,7 @@
 package be.vdab.groenetenen.security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import javax.sql.DataSource;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String MANAGER = "manager";
     private static final String HELPDESKMEDEWERKER = "helpdeskmedewerker";
@@ -50,5 +52,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/werknemers").hasAnyAuthority(MAGAZIJNIER, HELPDESKMEDEWERKER)
                 .mvcMatchers("/", "/login").permitAll()
                 .mvcMatchers("/**").authenticated();
+        http.httpBasic();
     }
 }

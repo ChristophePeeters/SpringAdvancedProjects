@@ -3,6 +3,7 @@ package be.vdab.groenetenen.services;
 import be.vdab.groenetenen.domain.Filiaal;
 import be.vdab.groenetenen.exceptions.FiliaalHeeftNogWerknemersException;
 import be.vdab.groenetenen.repositories.FiliaalRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ class DefaultFiliaalService implements FiliaalService {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('manager')")
     public List<Filiaal> findByPostcode(int van, int tot) {
         return filiaalRepository
                 .findByAdresPostcodeBetweenOrderByAdresPostcode(van, tot);
